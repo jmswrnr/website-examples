@@ -24,15 +24,20 @@ mainCamera.position.z = 10
 
 // Add Point Lights
 
-const keyLight = new THREE.PointLight(0xff00ff, 2, 20)
-keyLight.position.set(5, 0, 0)
-keyLight.layers.enable(OCCLUSION_LAYER)
-mainScene.add(keyLight)
-
 const backLight = new THREE.PointLight(0x00aaff, 3, 20)
 backLight.position.set(-5, 5, -5)
 backLight.layers.enable(OCCLUSION_LAYER)
 mainScene.add(backLight)
+
+const fillLight = new THREE.PointLight(0x00aaff, 0.7, 20)
+fillLight.position.set(-5, 0, 5)
+fillLight.layers.enable(OCCLUSION_LAYER)
+mainScene.add(fillLight)
+
+const keyLight = new THREE.PointLight(0xff00ff, 2, 20)
+keyLight.position.set(5, 0, 0)
+keyLight.layers.enable(OCCLUSION_LAYER)
+mainScene.add(keyLight)
 
 // Create Renderer
 
