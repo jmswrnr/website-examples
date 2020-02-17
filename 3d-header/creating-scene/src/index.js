@@ -52,9 +52,11 @@ mainScene.add(cube)
 // Render Scene
 
 function render() {
+  requestAnimationFrame(render)
+
   cube.rotation.x += 0.01
   cube.rotation.y += 0.01
-  requestAnimationFrame(render)
+  
   renderer.render(mainScene, mainCamera)
 }
 render()
