@@ -66,11 +66,11 @@ const modelFile = require('../model/cybertruck.glb')
 loader.load(
   modelFile,
   gltf => {
-    // Add colored version set to default layer
+    // Add default mesh set to default layer
     gltf.scene.layers.set(DEFAULT_LAYER)
     modelContainer.add(gltf.scene)
 
-    // Add black version set to occlusion Layer
+    // Add black mesh set to occlusion Layer
     const occlusionScene = gltf.scene.clone()
     const blackMaterial = new THREE.MeshBasicMaterial({
       color: new THREE.Color(0x000000),
