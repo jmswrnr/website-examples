@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
