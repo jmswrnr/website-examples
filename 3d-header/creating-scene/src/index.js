@@ -33,7 +33,6 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('app').appendChild(renderer.domElement)
 
-
 // Handle Window Resize
 
 function resizeRenderer() {
@@ -45,9 +44,9 @@ window.addEventListener('resize', resizeRenderer)
 
 // Placeholder 3D Cube
 
-var geometry = new THREE.BoxGeometry()
-var material = new THREE.MeshPhongMaterial({ color: 0xffffff })
-var cube = new THREE.Mesh(geometry, material)
+const geometry = new THREE.BoxGeometry()
+const material = new THREE.MeshPhongMaterial({ color: 0xffffff })
+const cube = new THREE.Mesh(geometry, material)
 mainScene.add(cube)
 
 // Render Scene
