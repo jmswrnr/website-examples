@@ -13,5 +13,10 @@
   "devDependencies": {
     "@babel/core": "7.2.0",
     "parcel-bundler": "^1.6.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true
   }
 }
