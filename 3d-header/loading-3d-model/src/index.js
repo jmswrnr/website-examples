@@ -7,7 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 const DEFAULT_LAYER = 0
 const OCCLUSION_LAYER = 1
 
-// Creating Scene, Group + Camera
+// Create Scene, Group + Camera
 
 const mainScene = new THREE.Scene()
 
@@ -22,7 +22,7 @@ const mainCamera = new THREE.PerspectiveCamera(
 )
 mainCamera.position.z = 10
 
-// Adding Point Lights
+// Add Point Lights
 
 const keyLight = new THREE.PointLight(0xff00ff, 2, 20)
 keyLight.position.set(5, 0, 0)
@@ -34,7 +34,7 @@ backLight.position.set(-5, 5, -5)
 backLight.layers.enable(OCCLUSION_LAYER)
 mainScene.add(backLight)
 
-// Creating Renderer
+// Create Renderer
 
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -57,7 +57,7 @@ function resizeRenderer() {
 }
 window.addEventListener('resize', resizeRenderer)
 
-// Loading 3D Model
+// Load 3D Model
 
 const loader = new GLTFLoader()
 const modelFile = require('../model/cybertruck.glb')
