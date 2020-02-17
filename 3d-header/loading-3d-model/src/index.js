@@ -18,10 +18,9 @@ const mainCamera = new THREE.PerspectiveCamera(
   30,
   window.innerWidth / window.innerHeight,
   0.1,
-  1000
+  20
 )
 mainCamera.position.z = 10
-mainCamera.layers.set(DEFAULT_LAYER)
 
 // Adding Point Lights
 
