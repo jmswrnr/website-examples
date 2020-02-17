@@ -15,7 +15,7 @@ const modelContainer = new THREE.Group()
 mainScene.add(modelContainer)
 
 const mainCamera = new THREE.PerspectiveCamera(
-  30,
+  20,
   window.innerWidth / window.innerHeight,
   0.1,
   20
