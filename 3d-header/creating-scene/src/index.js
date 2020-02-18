@@ -1,6 +1,6 @@
 import './styles.css'
 import * as THREE from 'three'
-import debounce from 'lodash.throttle'
+import debounce from 'lodash.debounce'
 
 // Create Scene + Camera
 
