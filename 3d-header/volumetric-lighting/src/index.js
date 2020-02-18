@@ -1,5 +1,7 @@
 import './styles.css'
 import * as THREE from 'three'
+import debounce from 'lodash.debounce'
+
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
@@ -149,7 +151,7 @@ function resizeRenderer() {
   occlusionCamera.aspect = mainCamera.aspect
   occlusionCamera.updateProjectionMatrix()
 }
-window.addEventListener('resize', resizeRenderer)
+window.addEventListener('resize', debounce(resizeRenderer, 50))
 
 // Render Scene
 

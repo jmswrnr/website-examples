@@ -1,6 +1,6 @@
 {
   "name": "ascii-header",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "index.html",
   "scripts": {
@@ -8,6 +8,7 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "three": "0.113.2"
   },
   "devDependencies": {

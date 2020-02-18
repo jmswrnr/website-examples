@@ -1,5 +1,6 @@
 import './styles.css'
 import * as THREE from 'three'
+import debounce from 'lodash.debounce'
 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
@@ -124,9 +125,15 @@ function updateAsciiRenderSize() {
     size.charCount[0],
     size.charCount[1]
   )
+
   asciiPass.uniforms.renderCharUv.value.set(
     size.roundedScaleDifference[0] / size.charCount[0],
     size.roundedScaleDifference[1] / size.charCount[1]
+  )
+
+  lowResRenderTarget.setSize(
+    size.charCount[0] * 2,
+    size.charCount[1] * 2
   )
 }
 
@@ -142,7 +149,7 @@ function resizeRenderer() {
   mainCamera.updateProjectionMatrix()
   updateAsciiRenderSize()
 }
-window.addEventListener('resize', resizeRenderer)
+window.addEventListener('resize', debounce(resizeRenderer, 50))
 
 // Render Scene
 
