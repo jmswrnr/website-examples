@@ -73,8 +73,10 @@ loader.load(
       color: new THREE.Color(0x000000),
     })
     occlusionScene.traverse(node => {
-      if (node instanceof THREE.Mesh) {
+      if (node.material) {
         node.material = blackMaterial
+      }
+      if (node.layers) {
         node.layers.set(OCCLUSION_LAYER)
       }
     })
