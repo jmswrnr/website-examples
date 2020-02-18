@@ -1,5 +1,6 @@
 import './styles.css'
 import * as THREE from 'three'
+import debounce from 'lodash.throttle'
 
 // Create Scene + Camera
 
@@ -40,7 +41,7 @@ function resizeRenderer() {
   mainCamera.aspect = window.innerWidth / window.innerHeight
   mainCamera.updateProjectionMatrix()
 }
-window.addEventListener('resize', resizeRenderer)
+window.addEventListener('resize', debounce(resizeRenderer, 50))
 
 // Placeholder 3D Cube
 

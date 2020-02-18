@@ -1,5 +1,6 @@
 import './styles.css'
 import * as THREE from 'three'
+import debounce from 'lodash.throttle'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 
@@ -42,7 +43,7 @@ function resizeRenderer() {
   mainCamera.aspect = window.innerWidth / window.innerHeight
   mainCamera.updateProjectionMatrix()
 }
-window.addEventListener('resize', resizeRenderer)
+window.addEventListener('resize', debounce(resizeRenderer, 50))
 
 // Load 3D Model
 
