@@ -14,7 +14,7 @@ import ASCIIShader from './shaders/ASCII'
 const mainScene = new THREE.Scene()
 
 const mainCamera = new THREE.PerspectiveCamera(
-  20,
+  15,
   window.innerWidth / window.innerHeight,
   8,
   11
