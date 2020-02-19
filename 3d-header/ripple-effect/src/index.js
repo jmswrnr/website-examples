@@ -171,13 +171,12 @@ window.addEventListener('resize', debounce(resizeRenderer, 50))
 const clock = new THREE.Clock()
 function render() {
   requestAnimationFrame(render)
-
   const delta = clock.getDelta()
 
   renderRipples(delta)
 
-  modelContainer.rotation.x += 0.01
-  modelContainer.rotation.y += 0.01
+  modelContainer.rotation.x += delta * 0.5
+  modelContainer.rotation.y += delta * 0.5
 
   finalComposer.render()
 }

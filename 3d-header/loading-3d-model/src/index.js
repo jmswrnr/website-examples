@@ -64,11 +64,14 @@ loader.load(
 
 // Render Scene
 
+const clock = new THREE.Clock()
+
 function render() {
   requestAnimationFrame(render)
+  const delta = clock.getDelta()
 
-  modelContainer.rotation.x += 0.01
-  modelContainer.rotation.y += 0.01
+  modelContainer.rotation.x += delta * 0.5
+  modelContainer.rotation.y += delta * 0.5
 
   renderer.render(mainScene, mainCamera)
 }

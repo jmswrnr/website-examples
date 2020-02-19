@@ -52,11 +52,14 @@ mainScene.add(cube)
 
 // Render Scene
 
+const clock = new THREE.Clock()
+
 function render() {
   requestAnimationFrame(render)
+  const delta = clock.getDelta()
 
-  cube.rotation.x += 0.01
-  cube.rotation.y += 0.01
+  cube.rotation.x += delta * 0.5
+  cube.rotation.y += delta * 0.5
   
   renderer.render(mainScene, mainCamera)
 }
