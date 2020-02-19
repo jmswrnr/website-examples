@@ -61,7 +61,7 @@ export default () => ({
         mod(vUv.y, renderCharSize.y)
       ) * renderCharCount * fontCharSize + vec2(
         floor(mod(charIndex, fontCharCount.x)) * fontCharSize.x,
-        floor(charIndex * fontCharSize.y) * fontCharSize.y
+        floor(charIndex * fontCharSize.x) * fontCharSize.y
       );
       
       gl_FragColor = texture2D(tFont, fontuv) * color;
