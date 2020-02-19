@@ -17,7 +17,7 @@ const mainCamera = new THREE.PerspectiveCamera(
   20,
   window.innerWidth / window.innerHeight,
   8,
-  12
+  11
 )
 mainCamera.position.z = 10
 
@@ -70,26 +70,23 @@ tFont.minFilter = THREE.NearestFilter
 tFont.magFilter = THREE.NearestFilter
 
 function getLowResSize() {
-  const charCount = [
-    Math.ceil(window.innerWidth / FONT_CHAR_SIZE.x),
-    Math.ceil(window.innerHeight / FONT_CHAR_SIZE.y),
+  const charCountPrecise = [
+    window.innerWidth / FONT_CHAR_SIZE.x,
+    window.innerHeight / FONT_CHAR_SIZE.y,
   ]
 
-  const roundedScaleDifference = [
-    (charCount[0] * FONT_CHAR_SIZE.x) / window.innerWidth,
-    (charCount[1] * FONT_CHAR_SIZE.y) / window.innerHeight,
-  ]
+  const charCountCeil = charCountPrecise.map(Math.ceil)
 
   return {
-    charCount,
-    roundedScaleDifference,
+    charCountPrecise,
+    charCountCeil,
   }
 }
 
 const startingSizeData = getLowResSize()
 const lowResRenderTarget = new THREE.WebGLRenderTarget(
-  startingSizeData.charCount[0] * 2,
-  startingSizeData.charCount[1] * 2
+  startingSizeData.charCountCeil[0] * 2,
+  startingSizeData.charCountCeil[1] * 2
 )
 
 const lowResDepthTexture = new THREE.DepthTexture()
@@ -105,35 +102,32 @@ asciiPass.uniforms.cameraNear.value = mainCamera.near
 asciiPass.uniforms.cameraFar.value = mainCamera.far
 asciiPass.uniforms.tFont.value = tFont
 
-asciiPass.uniforms.fontCharUv.value.set(
-  1 / (FONT_MAP_SIZE.x / FONT_CHAR_SIZE.x),
-  1 / (FONT_MAP_SIZE.y / FONT_CHAR_SIZE.y)
-)
-asciiPass.uniforms.fontCharSize.value.set(
-  1 / Math.floor(FONT_MAP_SIZE.x / FONT_CHAR_SIZE.x),
-  1 / Math.floor(FONT_MAP_SIZE.y / FONT_CHAR_SIZE.y)
-)
-asciiPass.uniforms.fontMapSize.value.set(
-  Math.floor(FONT_MAP_SIZE.x / FONT_CHAR_SIZE.x),
-  Math.floor(FONT_MAP_SIZE.y / FONT_CHAR_SIZE.y)
-)
+const fontCountX = FONT_MAP_SIZE.x / FONT_CHAR_SIZE.x
+const fontCountY = FONT_MAP_SIZE.y / FONT_CHAR_SIZE.y
+
+asciiPass.uniforms.fontCharTotalCount.value =
+  Math.floor(fontCountX) * Math.floor(fontCountY)
+
+asciiPass.uniforms.fontCharSize.value.set(1 / fontCountX, 1 / fontCountY)
+
+asciiPass.uniforms.fontCharCount.value.set(fontCountX, fontCountY)
 
 function updateAsciiRenderSize() {
   const size = getLowResSize()
 
   asciiPass.uniforms.renderCharSize.value.set(
-    size.charCount[0],
-    size.charCount[1]
+    1 / size.charCountPrecise[0],
+    1 / size.charCountPrecise[1]
   )
 
-  asciiPass.uniforms.renderCharUv.value.set(
-    size.roundedScaleDifference[0] / size.charCount[0],
-    size.roundedScaleDifference[1] / size.charCount[1]
+  asciiPass.uniforms.renderCharCount.value.set(
+    size.charCountPrecise[0],
+    size.charCountPrecise[1]
   )
 
   lowResRenderTarget.setSize(
-    size.charCount[0] * 2,
-    size.charCount[1] * 2
+    size.charCountCeil[0] * 2,
+    size.charCountCeil[1] * 2
   )
 }
 
@@ -156,7 +150,6 @@ window.addEventListener('resize', debounce(resizeRenderer, 50))
 function render() {
   requestAnimationFrame(render)
 
-  modelContainer.rotation.x += 0.01
   modelContainer.rotation.y += 0.01
 
   renderer.setRenderTarget(lowResRenderTarget)
