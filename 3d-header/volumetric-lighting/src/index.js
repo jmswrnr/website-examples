@@ -135,6 +135,7 @@ finalComposer.addPass(additivePass)
 
 function mousemove(e) {
   lightCone.position.x = 5 * ((e.clientX / window.innerWidth) * 2 - 1)
+  backLight.position.x = lightCone.position.x
 }
 window.addEventListener('mousemove', mousemove)
 
