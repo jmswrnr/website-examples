@@ -36,15 +36,6 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('app').appendChild(renderer.domElement)
 
-// Handle Window Resize
-
-function resizeRenderer() {
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  mainCamera.aspect = window.innerWidth / window.innerHeight
-  mainCamera.updateProjectionMatrix()
-}
-window.addEventListener('resize', debounce(resizeRenderer, 50))
-
 // Load 3D Model
 
 const loader = new GLTFLoader()
@@ -62,17 +53,27 @@ loader.load(
   console.error
 )
 
+// Handle Window Resize
+
+function resizeRenderer() {
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  mainCamera.aspect = window.innerWidth / window.innerHeight
+  mainCamera.updateProjectionMatrix()
+}
+window.addEventListener('resize', debounce(resizeRenderer, 50))
+
 // Render Scene
 
 const clock = new THREE.Clock()
 
 function render() {
-  requestAnimationFrame(render)
   const delta = clock.getDelta()
 
   modelContainer.rotation.x += delta * 0.5
   modelContainer.rotation.y += delta * 0.5
 
   renderer.render(mainScene, mainCamera)
+  
+  requestAnimationFrame(render)
 }
 render()

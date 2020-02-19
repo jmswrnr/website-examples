@@ -34,6 +34,13 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('app').appendChild(renderer.domElement)
 
+// Placeholder 3D Cube
+
+const geometry = new THREE.BoxGeometry()
+const material = new THREE.MeshPhongMaterial({ color: 0xffffff })
+const cube = new THREE.Mesh(geometry, material)
+mainScene.add(cube)
+
 // Handle Window Resize
 
 function resizeRenderer() {
@@ -43,24 +50,18 @@ function resizeRenderer() {
 }
 window.addEventListener('resize', debounce(resizeRenderer, 50))
 
-// Placeholder 3D Cube
-
-const geometry = new THREE.BoxGeometry()
-const material = new THREE.MeshPhongMaterial({ color: 0xffffff })
-const cube = new THREE.Mesh(geometry, material)
-mainScene.add(cube)
-
 // Render Scene
 
 const clock = new THREE.Clock()
 
 function render() {
-  requestAnimationFrame(render)
   const delta = clock.getDelta()
 
   cube.rotation.x += delta * 0.5
   cube.rotation.y += delta * 0.5
   
   renderer.render(mainScene, mainCamera)
+  
+  requestAnimationFrame(render)
 }
 render()
