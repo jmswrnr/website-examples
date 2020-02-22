@@ -87,7 +87,7 @@ const particlePositions = new THREE.Float32BufferAttribute(
 particleGeometry.setAttribute('position', particlePositions)
 
 const particleMaterial = new THREE.ShaderMaterial(VertexLitParticle())
-particleMaterial.uniforms.pointSize.value = 8.0
+particleMaterial.uniforms.pointSize.value = 2.0
 const particles = new THREE.Points(particleGeometry, particleMaterial)
 particlesGroup.add(particles)
 
