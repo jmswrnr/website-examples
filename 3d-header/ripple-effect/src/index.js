@@ -160,6 +160,8 @@ finalComposer.addPass(ripplePass)
 // Handle Window Resize
 
 function resizeRenderer() {
+  rippleCanvas.width = rippleCanvas.style.width = window.innerWidth
+  rippleCanvas.height = rippleCanvas.style.height = window.innerHeight
   renderer.setSize(window.innerWidth, window.innerHeight)
   mainCamera.aspect = window.innerWidth / window.innerHeight
   mainCamera.updateProjectionMatrix()
