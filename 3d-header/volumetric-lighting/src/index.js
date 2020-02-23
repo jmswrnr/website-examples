@@ -142,7 +142,7 @@ window.addEventListener('mousemove', mousemove)
 // Handle Window Resize
 
 function resizeRenderer() {
-  occlusionRenderTarget.setSize(
+  occlusionComposer.setSize(
     window.innerWidth * 0.5,
     window.innerHeight * 0.5
   )
