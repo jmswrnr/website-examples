@@ -84,6 +84,7 @@ finalComposer.addPass(scanPass)
 function resizeRenderer() {
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderTarget.setSize(window.innerWidth, window.innerHeight)
+  finalComposer.setSize(window.innerWidth, window.innerHeight)
   mainCamera.aspect = window.innerWidth / window.innerHeight
   mainCamera.updateProjectionMatrix()
 }
