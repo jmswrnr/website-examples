@@ -1,7 +1,7 @@
 import './styles.css'
 import * as THREE from 'three'
 import debounce from 'lodash.debounce'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from '../three-examples/loaders/GLTFLoader'
 
 
 // Create Scene + Camera
