@@ -2,9 +2,9 @@ import './styles.css'
 import * as THREE from 'three'
 import debounce from 'lodash.debounce'
 
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
+import { GLTFLoader } from '../three-examples/loaders/GLTFLoader'
+import { EffectComposer } from '../three-examples/postprocessing/EffectComposer'
+import { ShaderPass } from '../three-examples/postprocessing/ShaderPass'
 
 import ASCIIShader from './shaders/ASCII'
 
